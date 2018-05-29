@@ -1,5 +1,7 @@
 import Color from '../color/color.component';
 import React from 'react'
+import {connect} from 'react-redux';
+import {rateColor,removeColor} from '../../redux/store-factory'
 const ColorList = ({savedColors=[],onRate=f=>f,onRemove=f=>f})=>
     <div className="container">
         <div className="row">
@@ -19,6 +21,16 @@ const ColorList = ({savedColors=[],onRate=f=>f,onRemove=f=>f})=>
 
         </div>
     </div>
+const mapStateToProps = state =>({
+    savedColors:state.colors
+});
+const mapDispatchToProps = dispatch =>({
+    onRate(id,rating){
+        dispatch(rateColor(id,rating))
+    },
+    onRemove(id){
+        dispatch(removeColor(id))
+    }
+})
 
-
-export default ColorList;
+export default connect(mapStateToProps,mapDispatchToProps)(ColorList);

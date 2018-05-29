@@ -2,6 +2,8 @@
  * Created by emugisha on 3/14/2018.
  */
 import React from 'react';
+import {addColor} from '../../redux/store-factory';
+import {connect} from 'react-redux';
 
 const AddColor = ({onNewColor=f=>f})=>{
     let _title,_color;
@@ -35,5 +37,10 @@ const AddColor = ({onNewColor=f=>f})=>{
         </form>
     );
 }
+const mapDispatchToProps = dispatch=>({
+    onNewColor(title,color){
+        dispatch(addColor(title,color))
+    }
+})
+export default connect(null,mapDispatchToProps)(AddColor);
 
-export default AddColor;

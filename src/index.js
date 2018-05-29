@@ -4,6 +4,13 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import storeFactory from './redux/store-factory';
+import {Provider} from 'react-redux';
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+const store = storeFactory();
+
+ReactDOM.render(
+    <Provider store={store}>
+        <App/>
+    </Provider>, document.getElementById('root'));
 registerServiceWorker();
